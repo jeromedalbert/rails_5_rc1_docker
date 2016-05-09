@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host: db
+  port: 5432
+
+development:
+  <<: *default
+  database: rails_5_rc1_docker_development
+
+test:
+  <<: *default
+  database: rails_5_rc1_docker_test
+
+production:
+  <<: *default
+  database: rails_5_rc1_docker_production

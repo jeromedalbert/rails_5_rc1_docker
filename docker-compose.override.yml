@@ -1,0 +1,7 @@
+app:
+  volumes:
+    - .:/var/www/rails_5_rc1_docker
+
+web:
+  volumes_from:
+    - app

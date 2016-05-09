@@ -1,0 +1,23 @@
+app:
+  build: .
+  env_file: .env
+  environment:
+    RAILS_ENV: $RAILS_ENV
+  links:
+    - db
+  expose:
+    - "3000"
+  command: puma
+
+db:
+  image: postgres:9.5.3
+  volumes:
+    - rails_5_rc1_docker-postgres:/var/lib/postgresql/data
+
+web:
+  build: .
+  dockerfile: config/containers/Dockerfile-nginx
+  links:
+    - app
+  ports:
+    - "80:80"
